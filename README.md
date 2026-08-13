@@ -31,8 +31,9 @@ el modelo solo razona sobre los hallazgos ya parseados (más fiable con un 7B).
 ```bash
 # copia estos ficheros a .241 (p. ej. con scp) y:
 bash setup_241.sh
-ssh-copy-id -i ~/.ssh/id_ed25519.pub <usuario>@192.168.10.50   # autoriza la clave en el objetivo
-cd ~/audit-agent
+ssh-keygen -t ed25519 -f ~/.ssh/agente_key -C "agente-auditor" -N ""
+ssh-copy-id -i ~/.ssh/agente_key.pub <usuario>@192.168.10.50   # autoriza la clave en el objetivo
+cd ~/audit-ia
 cp agent.env.example agent.env          # perfil CIS (por defecto), o…
 cp agent.env.stig.example agent.env     # …perfil STIG
 # edita agent.env con tus datos
