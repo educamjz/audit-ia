@@ -73,8 +73,8 @@ Apunta el **nombre exacto del modelo**: lo necesitarás en la configuración.
 En `.241`, clona el repositorio de la práctica:
 
 ```bash
-git clone https://github.com/<USUARIO>/<REPO>.git
-cd <REPO>
+git clone https://github.com/educamjz/audit-ia.git
+cd audit-ia
 ls
 # audit_agent.py  requirements.txt  setup_241.sh  agent.env.example
 # agent.env.stig.example  crewai/  GUIA-PRACTICA.md
