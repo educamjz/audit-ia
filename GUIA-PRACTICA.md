@@ -113,7 +113,7 @@ OpenSCAP necesita el contenido de la *SCAP Security Guide* en `.50`:
 
 ```bash
 ssh <usuario_objetivo>@192.168.10.50 \
-  'ls /usr/share/xml/scap/ssg/content/ssg-ubuntu*-ds.xml'
+  'ls /opt/ssg/ssg-ubuntu2004*-ds.xml'
 ```
 Si no aparece ningún fichero, instálalo en el objetivo:
 ```bash
