@@ -1,0 +1,25 @@
+# ─── Credenciales: NUNCA subir ───────────────────────────────
+agent.env
+
+# ─── Clave de corrección: solo para el docente ───────────────
+CLAVE-CORRECCION-DOCENTE.md
+
+# ─── Entornos virtuales de Python ────────────────────────────
+.venv/
+**/.venv/
+venv/
+
+# ─── Informes generados por el agente ────────────────────────
+reports/
+crewai/reports/
+
+# ─── Caché de Python ─────────────────────────────────────────
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+
+# ─── Claves SSH que pudieran quedar en el árbol ──────────────
+id_ed25519
+id_ed25519.pub
+id_rsa
