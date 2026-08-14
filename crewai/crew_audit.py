@@ -22,6 +22,7 @@ Uso:
 import os
 import sys
 import json
+import datetime as dt
 
 # audit_agent.py vive en la carpeta padre: lo usamos como librería.
 PARENT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -147,7 +148,8 @@ tarea_revision = Task(
     expected_output="El informe de auditoría FINAL, depurado, en Markdown.",
     agent=revisor,
     context=[tarea_escaneo, tarea_informe],
-    output_file=os.path.join(REPORT_DIR, f"auditoria-crewai-{A.CFG['family']}.md"),
+    # NOTA: no usamos output_file de CrewAI (bloquea rutas absolutas y falla en
+    # silencio según versión). Guardamos el resultado nosotros mismos en __main__.
 )
 
 
@@ -163,5 +165,14 @@ if __name__ == "__main__":
     print(f"[crewai] Objetivo={A.CFG['target_host']}  Perfil={A.profile_label()}  "
           f"LLM={A.CFG['llm_model']}")
     result = crew.kickoff()
+
+    # Guardamos el informe final nosotros mismos (no dependemos del output_file de CrewAI).
+    texto = getattr(result, "raw", None) or str(result)
+    stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
+    out_path = os.path.join(REPORT_DIR, f"auditoria-crewai-{A.CFG['family']}-{stamp}.md")
+    with open(out_path, "w", encoding="utf-8") as fh:
+        fh.write(texto)
+
     print("\n──────── RESULTADO ────────\n")
-    print(result)
+    print(texto)
+    print(f"\n✅ Informe guardado en: {out_path}")
