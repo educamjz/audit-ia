@@ -45,9 +45,12 @@ llm = LLM(
 
 # ─────────────── Tools: tus escáneres deterministas envueltos ───────────────
 @tool("escanear_lynis")
-def escanear_lynis() -> str:
+def escanear_lynis(**kwargs) -> str:
     """Ejecuta Lynis por SSH en el objetivo y devuelve los hallazgos parseados en JSON
-    (hardening_index, warnings, suggestions)."""
+    (hardening_index, warnings, suggestions).
+
+    NO recibe argumentos: el host objetivo se toma de la configuración (agent.env).
+    Se aceptan y descartan kwargs para tolerar que el modelo invente parámetros."""
     t = A.Target(A.CFG)
     t.connect()
     try:
@@ -58,9 +61,12 @@ def escanear_lynis() -> str:
 
 
 @tool("escanear_openscap")
-def escanear_openscap() -> str:
+def escanear_openscap(**kwargs) -> str:
     """Ejecuta OpenSCAP con el perfil configurado (CIS/STIG/estándar) por SSH en el
-    objetivo y devuelve la lista de reglas en estado FAIL (regla, título, severidad) en JSON."""
+    objetivo y devuelve la lista de reglas en estado FAIL (regla, título, severidad) en JSON.
+
+    NO recibe argumentos: el objetivo y el perfil se toman de la configuración (agent.env).
+    Se aceptan y descartan kwargs para tolerar que el modelo invente parámetros."""
     t = A.Target(A.CFG)
     t.connect()
     try:
