@@ -1,0 +1,5 @@
+# Dependencias de la variante CrewAI (host .241)
+crewai>=0.80          # framework multi-agente (arrastra litellm para hablar con Ollama)
+crewai-tools>=0.14    # utilidades de tools (opcional pero recomendado)
+paramiko>=3.4         # heredado: SSH hacia el objetivo (usado por audit_agent.py)
+openai>=1.30          # heredado: audit_agent.py lo importa a nivel de módulo
